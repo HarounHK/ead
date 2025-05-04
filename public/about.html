@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+	<!-- Template CSS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" href="img/fav.png">
+	<meta name="author" content="codepixer">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta charset="UTF-8">
+	<title>HK Gallery</title>
+
+	<!-- Template CSS -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/linearicons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+	<!-- Header  -->
+	<header id="header">
+		<div class="container header-top">
+			<div class="row">
+				<div class="col-6 top-head-left">
+					<ul>
+						<li><a href="#">Visit Us</a></li>
+						<li><a href="#">Buy Ticket</a></li>
+					</ul>
+				</div>
+				<div class="col-6 top-head-right">
+					<ul>
+						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+						<li><a href="#"><i class="fa fa-behance"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="container">
+			<div class="row align-items-center justify-content-between d-flex">
+				<div id="logo"><a href="index.html"><img src="img/logo.png" alt="logo" /></a></div>
+				<nav id="nav-menu-container">
+					<ul class="nav-menu">
+						<li class="menu-active"><a href="index.html">Home</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="collection.html">My Collection</a></li>
+						<li><a href="contact.html">My Profile</a></li>
+						<li><a href="#" id="viewCartBtn">🛒 Cart <span id="cartCount"
+									style="font-size:.8em;">0</span></a></li>
+						<li><a href="/auth/logout">Logout</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<!-- Header  -->
+
+
+	<!-- Banner -->
+	<section class="banner-area relative" id="home">
+		<div class="overlay overlay-bg"></div>
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="about-content col-lg-12">
+					<h1 class="text-white">
+						About Us
+					</h1>
+					<p class="text-white link-nav"><a href="index.html">Home </a> <span
+							class="lnr lnr-arrow-right"></span> <a href="about.html"> About Us</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner -->
+
+	<section class="quote-area pt-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 quote-left">
+					<h1>
+						Art brings imagination to life, <br>
+						empowers the viewer, and encapsulates <br>
+						the imagination.
+					</h1>
+				</div>
+				<div class="col-lg-6 quote-right">
+					<p>
+						HK Gallery is a modern online art space — a place to browse, reflect, and enjoy a curated
+						selection of artworks from different styles, times, and voices.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Start about info Area -->
+	<section class="section-gap info-area" id="about">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="menu-content pb-40 col-lg-8">
+					<div class="title text-center">
+						<h1 class="mb-10">Few words about our Museum</h1>
+						<p>Who are in extremely love with eco friendly system.</p>
+					</div>
+				</div>
+			</div>
+			<div class="single-info row mt-40">
+				<div class="col-lg-6 col-md-12 mt-120 text-center no-padding info-left">
+					<div class="info-thumb">
+						<img src="img/pages/about-img.jpg" class="img-fluid" alt="">
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12 no-padding info-rigth">
+					<div class="info-content">
+						<h2 class="pb-30">
+							Welcome to HK Gallery - Digital Art Museum
+						</h2>
+						<p>
+							HK Gallery was created to celebrate the beauty of art in a modern, digital space.
+							From classic paintings to abstract pieces it’s a place to discover and purchase the art you love.
+						</p>
+						<br>
+						<p>
+							The experience is built around simplicity and elegance. You can search, explore, and view
+							artworks in a way that feels personal and enjoyable.
+						</p>
+						<br>
+						<p>
+							This site isn’t just for viewing but also for collecting. Pick and purchase your favourites pieces and add them to your personal collection.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End about info Area -->
+
+
+	<section class="section-gap info-area">
+		<div class="container">
+
+			<div class="mb-5">
+				<h2>How the Application Works</h2>
+				<p>
+					This single-page interface loads a JSON catalogue from our Node.js/Express REST API and uses
+					Axios to fetch, filter and paginate all artworks without a full page-reload.
+				</p>
+			</div>
+
+			<div class="mb-5">
+				<h2>Technologies Involved</h2>
+				<ul>
+					<li>Node.js & Express — REST API server</li>
+					<li>MongoDB Atlas — Database</li>
+					<li>Axios — Client-side HTTP requests</li>
+					<li>Bootstrap — Responsive layout & modals</li>
+					<li>JavaScript — Functionality, Backend and localStorage</li>
+				</ul>
+			</div>
+
+			<div class="mb-5">
+				<h2>Current Limitations</h2>
+				<ul>
+					<li>No User Priveleges. Any user can add, edit or delete artworks making the art pieces unprotected.</li>
+					<li>All filtering and pagination happen in the browser which slows down when the full Artworks.json loaded into the DB.</li>
+				</ul>
+			</div>
+
+			<!-- 4. Alternative approaches -->
+			<div class="mb-5">
+				<h2>Possible Alternatives</h2>
+				<ul>
+					<li>Use a front-end framework such as react for state management and UI components.</li>
+					<li>Make filtering and pagination run in the server to make app run faster.</li>
+					<li>Add Next-auth authentication for better security.</li>
+				</ul>
+			</div>
+
+		</div>
+	</section>
+
+	<!-- Footer-->
+	<hr style="margin-top:80px">
+	<footer class="footer-area section-gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>About HK Gallery</h6>
+						<p>
+							HK Gallery brings museum-quality artworks to your screen. Discover, collect and enjoy your
+							favorite
+							pieces—all in one place.
+						</p>
+						<p class="footer-text">
+							©
+							<script>document.write(new Date().getFullYear())</script> HK Gallery. All rights reserved.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>Newsletter</h6>
+						<p>Join our mailing list for new arrivals, exclusive previews, and art insights.</p>
+						<form class="form-inline">
+							<input class="form-control" placeholder="Your email address" type="email" required>
+							<button class="click-btn btn btn-default" type="submit">
+								<span class="lnr lnr-arrow-right"></span>
+							</button>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+					<div class="single-footer-widget">
+						<h6>Follow Us</h6>
+						<div class="footer-social d-flex align-items-center">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+	<script src="js/easing.min.js"></script>
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script src="js/justified.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <title>HK Gallery – Art Collection</title>
+
+  <link rel="shortcut icon" href="img/fav.png">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700" rel="stylesheet">
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="css/linearicons.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/nice-select.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    #galleryApp {
+      padding: 80px 0;
+    }
+
+    #gallery .card img {
+      height: 210px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header  -->
+  <header id="header">
+    <div class="container header-top">
+      <div class="row">
+        <div class="col-6 top-head-left">
+          <ul>
+            <li><a href="#">Visit Us</a></li>
+            <li><a href="#">Buy Ticket</a></li>
+          </ul>
+        </div>
+        <div class="col-6 top-head-right">
+          <ul>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row align-items-center justify-content-between d-flex">
+        <div id="logo"><a href="index.html"><img src="img/logo.png" alt="logo" /></a></div>
+        <nav id="nav-menu-container">
+          <ul class="nav-menu">
+            <li class="menu-active"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="collection.html">My Collection</a></li>
+            <li><a href="contact.html">My Profile</a></li>
+            <li><a href="#" id="viewCartBtn">🛒 Cart <span id="cartCount" style="font-size:.8em;">0</span></a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- Header  -->
+
+  <!-- Hero  -->
+  <section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+      <div class="row fullscreen d-flex align-items-center justify-content-center">
+        <div class="banner-content col-lg-8">
+          <h1 class="text-white">Welcome to the Art Collection</h1>
+          <p class="pt-20 pb-20 text-white">Browse, curate and purchase artworks to add to your personal collection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Hero  -->
+
+  <!-- Gallery  -->
+  <section id="galleryApp">
+    <div class="container">
+
+      <div id="alerts"></div>
+
+      <!-- Filters and Add Button -->
+      <div class="row mb-4">
+        <div class="col-md-3"><input id="titleSearch" class="form-control" placeholder="Search title…"></div>
+        <div class="col-md-3"><input id="artistSearch" class="form-control" placeholder="Search artist…"></div>
+        <div class="col-md-3"><select id="yearFilter" class="form-select">
+            <option value="">Filter year</option>
+          </select></div>
+        <div class="col-md-2"><select id="departmentFilter" class="form-select">
+            <option value="">Filter department</option>
+          </select></div>
+        <div class="col-md-1 text-end">
+          <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#artworkModal"
+            onclick="openAddModal()"><i class="fa fa-plus-circle me-1"></i>Add</button>
+        </div>
+      </div>
+      <div id="gallery" class="row g-4"></div>
+
+      <!-- Pagination -->
+      <div class="d-flex justify-content-center mt-4">
+        <button id="prevPage" class="btn btn-outline-secondary me-2" disabled>Previous</button>
+        <button id="nextPage" class="btn btn-outline-secondary">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add/Edit Artwork Modal -->
+  <div class="modal fade" id="artworkModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="artworkForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Add / Edit Artwork</h5><button class="btn-close" type="button"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="artworkId">
+            <input class="form-control mb-2" id="title" placeholder="Title" required>
+            <input class="form-control mb-2" id="artist" placeholder="Artist">
+            <input class="form-control mb-2" id="year" placeholder="Year" type="number">
+            <select id="department" class="form-select mb-2" required>
+              <option value="">Select department</option>
+              <option>Architecture &amp; Design</option>
+              <option>Painting &amp; Sculpture</option>
+              <option>Photography</option>
+              <option>Prints &amp; Illustrated Books</option>
+              <option>Media &amp; Performance</option>
+            </select>
+            <input class="form-control mb-2" id="image" placeholder="Image URL">
+            <input class="form-control mb-2" id="price" placeholder="Price (€)" type="number">
+          </div>
+          <div class="modal-footer"><button class="btn btn-primary" type="submit">Save</button><button
+              class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Art close-up Modal  -->
+  <div class="modal fade" id="closeUpModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <img id="detailImg" class="w-100" style="max-height:60vh;object-fit:contain" alt="">
+        <div class="p-4">
+          <h3 id="detailTitle"></h3>
+          <p id="detailArtist" class="mb-1 fst-italic"></p>
+          <p id="detailDepartment" class="text-muted mb-2"></p>
+          <p id="detailYearPrice" class="fw-bold mb-4"></p>
+          <div class="d-flex gap-2">
+            <button id="detailCartBtn" class="btn flex-grow-1"></button>
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Your Cart</h5>
+        </div>
+        <div class="modal-body" id="cartList">Loading…</div>
+        <div class="modal-footer">
+          <button class="btn btn-success" onclick="buyArt()">Buy</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer-->
+  <hr style="margin-top:80px">
+  <footer class="footer-area section-gap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-6 col-sm-6">
+          <div class="single-footer-widget">
+            <h6>About HK Gallery</h6>
+            <p>
+              HK Gallery brings museum-quality artworks to your screen. Discover, collect and enjoy your favorite
+              pieces—all in one place.
+            </p>
+            <p class="footer-text">
+              ©
+              <script>document.write(new Date().getFullYear())</script> HK Gallery. All rights reserved.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-6">
+          <div class="single-footer-widget">
+            <h6>Newsletter</h6>
+            <p>Join our mailing list for new arrivals, exclusive previews, and art insights.</p>
+            <form class="form-inline">
+              <input class="form-control" placeholder="Your email address" type="email" required>
+              <button class="click-btn btn btn-default" type="submit">
+                <span class="lnr lnr-arrow-right"></span>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+          <div class="single-footer-widget">
+            <h6>Follow Us</h6>
+            <div class="footer-social d-flex align-items-center">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="js/vendor/jquery-2.2.4.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/parallax.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+
+    // State Variables
+    const qs = id => document.getElementById(id);
+    let editMode = false;
+    let page = 1;
+    const pageSize = 12;
+    let allArtworks = [];
+    let artworks = allArtworks;
+
+    // Setting Search Filters 
+    const titleSearch = qs('titleSearch');
+    const artistSearch = qs('artistSearch');
+    const yearFilter = qs('yearFilter');
+    const departmentFilter = qs('departmentFilter');
+
+    //  Banner Message
+    function showAlert(message, type = 'success') {
+      qs('alerts').innerHTML =
+        `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
+           ${message}</button>
+         </div>`;
+    }
+
+    // Opens the Cart Modal
+    qs('viewCartBtn').addEventListener('click', showCart);
+
+    async function showCart() {
+      const cart = getCart();
+      const response = await axios.get('/api/artworks'); // Fetches all art pieces
+      const items = response.data.artworks.filter(a => cart.includes(a._id)); // Shows only items in cart
+
+      // Message if cart is empty
+      if (!items.length) {
+        qs('cartList').innerHTML = '<p>Your cart is empty.</p>';
+        return new bootstrap.Modal(qs('cartModal')).show();
+      }
+
+      let total = 0;
+      qs('cartList').innerHTML = items.map(a => {
+        total += parseFloat(a.price || 0);
+        return `<div class="d-flex align-items-center mb-3 border-bottom pb-2">
+                  <img src="${a.image}" alt="${a.title}" style="height:60px;width:60px;object-fit:cover;margin-right:15px;border-radius:5px">
+                  <div class="flex-grow-1">
+                    <strong>${a.title}</strong><br><small class="text-muted">${a.artist}</small><br>
+                    <span class="fw-bold">€${Number(a.price).toLocaleString()}</span>
+                  </div>
+                  <button class="btn btn-outline-danger btn-sm ms-3" onclick="removeFromCart('${a._id}')">Remove</button>
+                </div>`;
+      }).join('') + `<div class="text-end mt-3"><h5>Total: €${total.toLocaleString()}</h5></div>`;
+
+      new bootstrap.Modal(qs('cartModal')).show();
+    }
+
+    // Removes Item from cart
+    function removeFromCart(id) {
+      const newCart = getCart().filter(x => x !== id); // Drops item ID
+      setCart(newCart); //Updates Cart
+      updateCartCount();
+      renderArtworks(); //Refreshes Artworkl
+      if (newCart.length) qs('viewCartBtn').click(); else bootstrap.Modal.getInstance(qs('cartModal'))?.hide();
+    }
+
+    // Cart Functions
+    function getCart() { return JSON.parse(localStorage.getItem('cart') || '[]'); }
+    function setCart(c) { localStorage.setItem('cart', JSON.stringify(c)); }
+    function isInCart(id) { return getCart().includes(id); }
+    function toggleCart(id) {
+      const cart = isInCart(id) ? getCart().filter(x => x !== id) : [...getCart(), id];
+      setCart(cart);
+      updateCartCount();
+      renderArtworks();
+    }
+    function updateCartCount() { qs('cartCount').textContent = getCart().length; }
+
+    // Shows the artwork up close in a modal
+    function openCloseUp(artwork) {
+      // Art Details
+      qs('detailImg').src = artwork.image || 'https://via.placeholder.com/800x600?text=No+Image';
+      qs('detailImg').alt = artwork.title || 'Untitled';
+      qs('detailTitle').textContent = artwork.title || 'Untitled';
+      qs('detailArtist').textContent = artwork.artist || 'Unknown artist';
+      qs('detailDepartment').textContent = artwork.department || '';
+      qs('detailYearPrice').textContent =
+        `${artwork.year || '–'} • €${Number(artwork.price || 0).toLocaleString()}`;
+
+      // Add and Remove Buttons
+      const btn = qs('detailCartBtn');
+      const inCart = isInCart(artwork._id);
+      btn.className = `btn ${inCart ? 'btn-danger' : 'btn-primary'} flex-grow-1`;
+      btn.innerHTML = inCart ? 'Remove from Cart' : 'Add to Cart';
+      btn.onclick = () => {
+        toggleCart(artwork._id);
+        updateCartCount();
+        const nowInCart = isInCart(artwork._id);
+        btn.className = `btn ${nowInCart ? 'btn-danger' : 'btn-primary'} flex-grow-1`;
+        btn.innerHTML = nowInCart ? 'Remove from Cart' : 'Add to Cart';
+      };
+
+      // Opens Modal
+      new bootstrap.Modal(qs('closeUpModal')).show();
+    }
+
+    // Fetches All Artworks
+    async function loadArtworks() {
+      const response = await axios.get('/api/artworks');
+      allArtworks = response.data.artworks;
+      artworks = allArtworks;
+      populateFilters();
+      renderArtworks();
+      updateCartCount();
+    }
+
+    // Populates Filter dropdowns based on artworks response
+    function populateFilters() {
+      if (qs('yearFilter').options.length > 1) return;
+
+      const years = [...new Set(artworks.map(a => a.year).filter(Boolean))].sort((a, b) => b - a);
+      const depts = [...new Set(artworks.map(a => a.department).filter(Boolean))].sort();
+
+      qs('yearFilter').innerHTML =
+        '<option value="">Filter year</option>' + years.map(y => `<option>${y}</option>`).join('');
+      qs('departmentFilter').innerHTML =
+        '<option value="">Filter department</option>' + depts.map(d => `<option>${d}</option>`).join('');
+    }
+
+
+    // Renders cards based on filters and page
+    function renderArtworks() {
+      const title = qs('titleSearch').value.toLowerCase();
+      const artist = qs('artistSearch').value.toLowerCase();
+      const year = qs('yearFilter').value;
+      const department = qs('departmentFilter').value;
+
+      const filtered = artworks.filter(artwork =>
+        (!title || artwork.title?.toLowerCase().includes(title)) &&
+        (!artist || artwork.artist?.toLowerCase().includes(artist)) &&
+        (!year || artwork.year == year) &&
+        (!department || artwork.department == department)
+      );
+
+      const start = (page - 1) * pageSize;
+      const items = filtered.slice(start, start + pageSize);
+
+      // Buids the HTML for cards
+      qs('gallery').innerHTML = items.map(artwork => `
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <img src="${artwork.image}" class="card-img-top" alt="${artwork.title}" style="cursor:pointer"
+                 onclick='openCloseUp(${JSON.stringify(artwork)})'>
+            <div class="card-body">
+              <h5 class="card-title">${artwork.title}</h5>
+              <p><em>${artwork.artist} (${artwork.year})</em></p>
+              <p class="text-muted">${artwork.department}</p>
+              <p class="fw-bold">€${artwork.price.toLocaleString()}</p>
+              <button class="btn btn-light w-100 mb-2" onclick="toggleCart('${artwork._id}')">
+                <i class="fa ${isInCart(artwork._id) ? 'fa-shopping-cart text-success' : 'fa-cart-plus'}"></i>
+                ${isInCart(artwork._id) ? 'In Cart' : 'Add to Cart'}
+              </button>
+              <button class="btn btn-warning w-100 mb-2" onclick='openEditModal(${JSON.stringify(artwork)})'>Edit</button>
+              <button class="btn btn-danger  w-100"   onclick="deleteArtwork('${artwork._id}')">Delete</button>
+            </div>
+          </div>
+        </div>`).join('');
+
+      // Controls pagination buttons
+      qs('prevPage').disabled = page === 1;
+      qs('nextPage').disabled = start + pageSize >= filtered.length;
+    }
+
+    // Allows user to purchase items in cart
+    async function buyArt() {
+      const cart = getCart();
+      for (const id of cart) {
+        try {
+          await axios.post(`/api/artworks/${id}/purchase`);
+        } catch (error) {
+          console.error('purchase failed', err.response?.data || error);
+        }
+      }
+
+      setCart([]);
+      showAlert('Purchase complete! The art pieces have been added to your personal Collection');
+
+      // Hides cart modal after purchase
+      const modal = bootstrap.Modal.getInstance(qs('cartModal'));
+      if (modal) modal.hide();
+
+      loadArtworks();
+    }
+
+    // Controls Add/Edit Modals
+    function openAddModal() { editMode = false; qs('artworkForm').reset(); qs('artworkId').value = ''; }
+    function openEditModal(artwork) {
+      editMode = true;
+      qs('artworkId').value = artwork._id; qs('title').value = artwork.title; qs('artist').value = artwork.artist;
+      qs('year').value = artwork.year; qs('department').value = artwork.department; qs('image').value = artwork.image; qs('price').value = artwork.price;
+      new bootstrap.Modal(qs('artworkModal')).show();
+    }
+
+    // Handles submitting form
+    qs('artworkForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const data = {
+        title: qs('title').value, artist: qs('artist').value, year: qs('year').value,
+        department: qs('department').value, image: qs('image').value, price: qs('price').value
+      };
+      try {
+        editMode
+          ? await axios.put(`/api/artworks/${qs('artworkId').value}`, data)
+          : await axios.post('/api/artworks', data);
+        bootstrap.Modal.getInstance(qs('artworkModal')).hide();
+        showAlert(editMode ? 'Artwork updated!' : 'Artwork added!');
+        loadArtworks();
+      } catch (error) { showAlert('Error saving', 'danger'); }
+    });
+
+    //  Handles deletiung artwork
+    async function deleteArtwork(id) {
+      if (!confirm('Delete this artwork?')) return;
+      await axios.delete(`/api/artworks/${id}`);
+      showAlert('Artwork has been deleted!');
+      loadArtworks();
+    }
+
+    // Pagination buttons and search
+    qs('prevPage').onclick = () => { if (page > 1) page--; renderArtworks(); };
+    qs('nextPage').onclick = () => { page++; renderArtworks(); };
+    [titleSearch, artistSearch, yearFilter, departmentFilter].forEach(el => el.addEventListener('input', () => { page = 1; renderArtworks(); }));
+
+    // Loads Artworks when page first loads
+    loadArtworks();
+  </script>
+</body>
+
+</html>
