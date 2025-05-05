@@ -1,17 +1,17 @@
 import express from "express"
-import bcrypt from 'bcryptjs'; 
+import bcrypt from "bcrypt"
 import User from "../models/User.js"
 
 const router = express.Router()
 
 // Handles user signup and creates session
 router.post("/signup", async (req, res) => {
-  const { username, password, confirmPassword } = req.body
+  const {username, email, fullName, bio, password} = req.body     
 
   try {
 
     // Validates Fierlds
-    if (!username || !password || !confirmPassword) {
+    if (!username || !email || !password || !confirmPassword) {
       return res.status(400).send("All fields are required")
     }
 
@@ -30,8 +30,8 @@ router.post("/signup", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10)
 
     // Create and stores user in DB
-    const user = new User({ username, password: hashedPassword })
-    await user.save()
+    const user = new User({username, email, fullName, bio, password: hashedPassword})
+    await user.save()  
 
     // Saves user info to session
     req.session.user = { id: user._id, username: user.username }
