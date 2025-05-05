@@ -123,8 +123,7 @@
       <div class="modal-content">
         <form id="artworkForm">
           <div class="modal-header">
-            <h5 class="modal-title">Add / Edit Artwork</h5><button class="btn-close" type="button"
-              data-bs-dismiss="modal"></button>
+            <h5 class="modal-title">Add / Edit Artwork</h5>
           </div>
           <div class="modal-body">
             <input type="hidden" id="artworkId">
@@ -266,17 +265,24 @@
 
     async function showCart() {
       const cart = getCart();
-      const response = await axios.get('/api/artworks'); // Fetches all art pieces
-      const items = response.data.artworks.filter(a => cart.includes(a._id)); // Shows only items in cart
+      const response = await axios.get('/api/artworks');
+      const allArtworks = response.data.artworks;
 
-      // Message if cart is empty
-      if (!items.length) {
+      // Only keep artworks that still exist
+      const validArtworks = allArtworks.filter(a => cart.includes(a._id));
+      const validIDs = validArtworks.map(a => a._id);
+
+      // Update cart to remove ghost items
+      setCart(validIDs);
+      updateCartCount();
+
+      if (!validArtworks.length) {
         qs('cartList').innerHTML = '<p>Your cart is empty.</p>';
         return new bootstrap.Modal(qs('cartModal')).show();
       }
 
       let total = 0;
-      qs('cartList').innerHTML = items.map(a => {
+      qs('cartList').innerHTML = validArtworks.map(a => {
         total += parseFloat(a.price || 0);
         return `<div class="d-flex align-items-center mb-3 border-bottom pb-2">
                   <img src="${a.image}" alt="${a.title}" style="height:60px;width:60px;object-fit:cover;margin-right:15px;border-radius:5px">
@@ -456,7 +462,6 @@
 
     //  Handles deletiung artwork
     async function deleteArtwork(id) {
-      if (!confirm('Delete this artwork?')) return;
       await axios.delete(`/api/artworks/${id}`);
       showAlert('Artwork has been deleted!');
       loadArtworks();

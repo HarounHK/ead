@@ -12,9 +12,13 @@
 
   <header id="header">
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="index.html">HK Gallery</a>
-      </nav>
+      <div class="row align-items-center justify-content-between d-flex">
+        <div id="logo"><a href="signup.html"><img src="img/logo.png" alt="logo" /></a></div>
+        <nav id="nav-menu-container">
+          <ul class="nav-menu">
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -37,6 +41,14 @@
             <div class="form-group">
               <label for="username">Username</label>
               <input class="form-control" type="text" id="username" name="username" required />
+            </div>
+            <div class="form-group mt-3">
+              <label for="email">Email</label>
+              <input class="form-control" type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group mt-3">
+              <label for="bio">Bio</label>
+              <textarea class="form-control" id="bio" name="bio" rows="3" placeholder="Tell us a little about yourself"></textarea>
             </div>
             <div class="form-group mt-3">
               <label for="password">Password</label>
