@@ -420,7 +420,7 @@
         try {
           await axios.post(`/api/artworks/${id}/purchase`);
         } catch (error) {
-          console.error('purchase failed', err.response?.data || error);
+          console.error('purchase failed', error.response?.data || error);
         }
       }
 
