@@ -1,5 +1,6 @@
 import express from "express"
 import Artwork from "../models/Artwork.js"
+import MyCollection from "../models/MyCollection.js";
 
 const router = express.Router()
 
@@ -54,36 +55,42 @@ router.delete("/:id", async (req, res) => {
   }
 })
 
-// Marks artwork as sold and links it to the user while deleting it from the main artworks collection
+// Adds purchased artworks to users collection in DB
 router.post("/:id/purchase", async (req, res) => {
   try {
     const artwork = await Artwork.findById(req.params.id);
     if (!artwork) return res.status(404).send("Artwork not found");
-    if (artwork.sold) return res.status(400).send("Already sold");
 
-    // Saves data before deleting
-    const purchasedArtwork = {
-      ...artwork.toObject(),
-      sold: true,
-      owner: req.session.user.id
-    };
+    // Creates new entry in  users collection
+    const newEntry = new MyCollection({
+      userId: req.session.user.id,
+      artwork: {
+        title: artwork.title,
+        artist: artwork.artist,
+        year: artwork.year,
+        department: artwork.department,
+        image: artwork.image,
+        price: artwork.price
+      }
+    });
 
-    await Artwork.findByIdAndDelete(req.params.id); 
+    await newEntry.save();
 
-    res.json({ message: "Purchase successful", artwork: purchasedArtwork });
+    res.json({ message: "Added to your collection", newEntry });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Purchase failed" });
   }
-})
+});
 
 // Returns all artworks in users collection
 router.get("/my-collection", async (req, res) => {
   try {
-    const artworks = await Artwork.find({sold: true, owner: req.session.user.id,})
-    res.json({ artworks }) 
+    const collection = await MyCollection.find({ userId: req.session.user.id });
+    res.json({ artworks: collection.map(entry => entry.artwork) });
   } catch (error) {
-    res.status(500).json({ error: "Failed to load collection" })
+    res.status(500).json({ error: "Failed to load collection" });
   }
-})
+});
 
 export default router
