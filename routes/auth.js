@@ -6,7 +6,7 @@ const router = express.Router()
 
 // Handles user signup and creates session
 router.post("/signup", async (req, res) => {
-  const {username, email, fullName, bio, password} = req.body     
+  const {username, email, fullName, bio, password, confirmPassword} = req.body     
 
   try {
 
